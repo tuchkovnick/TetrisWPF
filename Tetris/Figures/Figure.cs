@@ -6,9 +6,9 @@ using System.Windows.Shapes;
 namespace Tetris.Figures
 {
     public struct Cube{
-        public Rectangle rect;
-        public int top;
-        public int left;
+        public Rectangle Rect;
+        public int Top;
+        public int Left;
     } 
 
     abstract class Figure
@@ -22,10 +22,10 @@ namespace Tetris.Figures
         {
             for(int i = 0; i < 4; i++)
             {
-                Rectangles[i].rect = new Rectangle();
-                Rectangles[i].rect.Width = step;
-                Rectangles[i].rect.Height = step;
-                Rectangles[i].rect.Fill = Brushes.Red;
+                Rectangles[i].Rect = new Rectangle();
+                Rectangles[i].Rect.Width = step;
+                Rectangles[i].Rect.Height = step;
+                Rectangles[i].Rect.Fill = Brushes.Red;
             }
         }
 
@@ -48,7 +48,7 @@ namespace Tetris.Figures
             {
                 _figureCoordinates[i]. Y += step;
             }
-            updateCanvasLocation();
+            UpdateCanvasLocation();
             return true;
         }
 
@@ -68,7 +68,7 @@ namespace Tetris.Figures
             {
                 _figureCoordinates[i].X -= step;
             }
-            updateCanvasLocation();
+            UpdateCanvasLocation();
         }
 
         public void MoveRight()
@@ -87,19 +87,19 @@ namespace Tetris.Figures
             {
                 _figureCoordinates[i].X += step;
             }
-            updateCanvasLocation();
+            UpdateCanvasLocation();
         }
 
-        public void updateCanvasLocation()
+        public void UpdateCanvasLocation()
         {
             for (int i = 0; i < 4; i++)
             {
-                Canvas.SetTop(Rectangles[i].rect, FigureCoordinates[i].Y);
-                Canvas.SetLeft(Rectangles[i].rect, FigureCoordinates[i].X);
+                Canvas.SetTop(Rectangles[i].Rect, FigureCoordinates[i].Y);
+                Canvas.SetLeft(Rectangles[i].Rect, FigureCoordinates[i].X);
             }
         }
 
-        protected void adjust()
+        protected void Adjust()
         {
             while (CheckLeftOuting())
             {

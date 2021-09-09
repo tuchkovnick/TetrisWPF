@@ -4,8 +4,8 @@ namespace Tetris.Figures
 {
     class Line : Figure
     {
-        enum POSITION { HORIZONTAL, VERTICAL };
-        POSITION position;
+        enum Position { HORIZONTAL, VERTICAL };
+        Position _position;
         public Line(Point startingPoint)
         {
             for (int i = 0; i < 4; i++)
@@ -13,15 +13,15 @@ namespace Tetris.Figures
                 FigureCoordinates[i] = startingPoint;
                 FigureCoordinates[i].X += step * i;
             }
-            updateCanvasLocation();
-            position = POSITION.HORIZONTAL;
+            UpdateCanvasLocation();
+            _position = Position.HORIZONTAL;
         }
 
-        override public void Rotate()
+        public override void Rotate()
         {
             Point[] point = new Point[4];
 
-            if (position == POSITION.HORIZONTAL)
+            if (_position == Position.HORIZONTAL)
             {
                 point[0] = FigureCoordinates[1];
                 point[1].X = FigureCoordinates[1].X;
@@ -33,7 +33,7 @@ namespace Tetris.Figures
                 if (CheckOverlapping(point) == false)
                 {
                     FigureCoordinates = point;
-                    position = POSITION.VERTICAL;
+                    _position = Position.VERTICAL;
                 }
             }
             else
@@ -48,11 +48,11 @@ namespace Tetris.Figures
                 if (CheckOverlapping(point) == false)
                 {
                     FigureCoordinates = point;
-                    position = POSITION.HORIZONTAL;
+                    _position = Position.HORIZONTAL;
                 }
             }
-            adjust();
-            updateCanvasLocation();
+            Adjust();
+            UpdateCanvasLocation();
         }
 
     }

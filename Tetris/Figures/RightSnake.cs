@@ -4,8 +4,8 @@ namespace Tetris.Figures
 {
     class RightSnake:Figure
     {
-        enum POSITION { HORIZONTAL, VERTICAL };
-        POSITION position;
+        enum Position { HORIZONTAL, VERTICAL };
+        Position _position;
         public RightSnake(Point startingPoint)
         {
             FigureCoordinates[0] = startingPoint;
@@ -17,13 +17,13 @@ namespace Tetris.Figures
             FigureCoordinates[3].X += step;
             FigureCoordinates[0].Y += step * 2;
             FigureCoordinates[1].Y += step * 2;
-            updateCanvasLocation();
-            position = POSITION.HORIZONTAL;
+            UpdateCanvasLocation();
+            _position = Position.HORIZONTAL;
         }
 
-        override public void Rotate()
+        public override void Rotate()
         {
-            if (position == POSITION.HORIZONTAL)
+            if (_position == Position.HORIZONTAL)
             {
                 Point[] outPoint = new Point[4];
                 outPoint[0] = FigureCoordinates[1];
@@ -35,7 +35,7 @@ namespace Tetris.Figures
                 if (CheckOverlapping(outPoint) == false)
                 {
                     FigureCoordinates = outPoint;
-                    position = POSITION.VERTICAL;
+                    _position = Position.VERTICAL;
                 }
             }
             else
@@ -51,11 +51,11 @@ namespace Tetris.Figures
                 if (CheckOverlapping(outPoint) == false)
                 {
                     FigureCoordinates = outPoint;
-                    position = POSITION.HORIZONTAL;
+                    _position = Position.HORIZONTAL;
                 }
             }
-            adjust();
-            updateCanvasLocation();
+            Adjust();
+            UpdateCanvasLocation();
         }
     }
 }

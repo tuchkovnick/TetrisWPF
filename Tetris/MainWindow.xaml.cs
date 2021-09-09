@@ -47,7 +47,7 @@ namespace Tetris
             _figure = new Box(new Point(160, 0));
             for (int i = 0; i < 4; i++)
             {
-                GameField.Children.Add(_figure.Rectangles[i].rect);
+                GameField.Children.Add(_figure.Rectangles[i].Rect);
             }
             Timer.Start();
         }
@@ -58,7 +58,7 @@ namespace Tetris
             {
                 for (int i = 0; i < 4; i++)
                 {
-                    Dispatcher.Invoke(() => _figure.Rectangles[i].rect.Fill = Brushes.Green);
+                    Dispatcher.Invoke(() => _figure.Rectangles[i].Rect.Fill = Brushes.Green);
                 }
                 RefreshField();
             }
@@ -84,7 +84,7 @@ namespace Tetris
             _figure = CreateFigure((Figures)_random.Next(0,6), new Point(160, 0));
             for (int i = 0; i < 4; i++)
             {
-                GameField.Children.Add(_figure.Rectangles[i].rect);
+                GameField.Children.Add(_figure.Rectangles[i].Rect);
             }
 
             if (CheckLost())
@@ -115,7 +115,7 @@ namespace Tetris
                         }
                         for (int i = 0; i < 4; i++)
                         {
-                            Dispatcher.Invoke(() => _figure.Rectangles[i].rect.Fill = Brushes.Green);
+                            Dispatcher.Invoke(() => _figure.Rectangles[i].Rect.Fill = Brushes.Green);
                         }
                         RefreshField();
                         break;

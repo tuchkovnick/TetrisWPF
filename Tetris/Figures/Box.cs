@@ -13,7 +13,7 @@ namespace Tetris.Figures
             FigureCoordinates[2].Y = startingPoint.Y + step;
             FigureCoordinates[3].X = startingPoint.X + step;
             FigureCoordinates[3].Y = startingPoint.Y + step;
-            updateCanvasLocation();
+            UpdateCanvasLocation();
         }
 
         override public void Rotate() { }

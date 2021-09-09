@@ -4,8 +4,8 @@ namespace Tetris.Figures
 {
     class RightHorse:Figure
     {
-        enum POSITION { FIRST, SECOND, THIRD, FORTH };
-        POSITION position;
+        enum Position { FIRST, SECOND, THIRD, FORTH };
+        Position _position;
         public RightHorse(Point startingPoint)
         {
             FigureCoordinates[0] = startingPoint;
@@ -15,16 +15,16 @@ namespace Tetris.Figures
             FigureCoordinates[2].Y += step;
             FigureCoordinates[3] = FigureCoordinates[2];
             FigureCoordinates[3].Y += step;
-            updateCanvasLocation();
-            position = POSITION.FIRST;
+            UpdateCanvasLocation();
+            _position = Position.FIRST;
         }
 
-        override public void Rotate()
+        public override void Rotate()
         {
             Point[] point = new Point[4];
-            switch (position)
+            switch (_position)
             {
-                case POSITION.FIRST:
+                case Position.FIRST:
                     {
                         point[0] = FigureCoordinates[0];
                         point[0].Y += step;
@@ -38,11 +38,11 @@ namespace Tetris.Figures
                         if (CheckOverlapping(point) == false)
                         {
                             FigureCoordinates = point;
-                            position = POSITION.SECOND;
+                            _position = Position.SECOND;
                         }
                         break;
                     }
-                case POSITION.SECOND:
+                case Position.SECOND:
                     {
                         point[0] = FigureCoordinates[0];
                         point[0].X -= step;
@@ -56,11 +56,11 @@ namespace Tetris.Figures
                         if (CheckOverlapping(point) == false)
                         {
                             FigureCoordinates = point;
-                            position = POSITION.THIRD;
+                            _position = Position.THIRD;
                         }
                         break;
                     }
-                case POSITION.THIRD:
+                case Position.THIRD:
                     {
                         point[0] = FigureCoordinates[0];
                         point[0].Y -= step;
@@ -74,12 +74,12 @@ namespace Tetris.Figures
                         if (CheckOverlapping(point) == false)
                         {
                             FigureCoordinates = point;
-                            position = POSITION.FORTH;
+                            _position = Position.FORTH;
                         }
                         break;
                     }
 
-                case POSITION.FORTH:
+                case Position.FORTH:
                     {
                         point[0] = FigureCoordinates[0];
                         point[0].Y -= step;
@@ -93,13 +93,13 @@ namespace Tetris.Figures
                         if (CheckOverlapping(point) == false)
                         {
                             FigureCoordinates = point;
-                            position = POSITION.FIRST;
+                            _position = Position.FIRST;
                         }
                         break;
                     }
             }
-            adjust();
-            updateCanvasLocation();
+            Adjust();
+            UpdateCanvasLocation();
         }
     }
 }
